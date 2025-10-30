@@ -4,13 +4,13 @@ import Login from "./Login";
 import ResetPassword from "./Reset";
 
 function App() {
-  const [page, setPage] = useState("login"); // default to login
+  const [page, setPage] = useState("login"); 
 
   const goToLogin = () => setPage("login");
 
   return (
     <>
-      {/* Navbar */}
+   
       <nav className="navbar navbar-dark bg-dark mb-5 ">
         <div className="container">
           <img src="/download.jpg" alt="logo" height={50} width={100} ></img>
@@ -32,7 +32,6 @@ function App() {
         </div>
       </nav>
 
-      {/* Page content */}
       <div className="d-flex justify-content-center">
         <div className="card p-4 shadow" style={{ width: "100%", maxWidth: "400px" }}>
           {page === "register" && <Register onLogin={goToLogin} />}

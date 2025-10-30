@@ -16,20 +16,18 @@ function ResetPassword({ onLogin }) {
 })
 
 
-      // ✅ Throw error if response is not OK
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
       const data = await res.json();
       setMsg(data.message);
       setMsgClass(data.success ? "text-success" : "text-danger");
 
-      // Redirect to login after 1.5 seconds
       if (data.success) {
         setTimeout(() => {
           setEmail("");
           setNewPassword("");
           setMsg("");
-          onLogin(); // should navigate to login page
+          onLogin(); 
         }, 1500);
       }
     } catch (err) {

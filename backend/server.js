@@ -9,7 +9,6 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Atlas URI
 const uri = "mongodb+srv://lavanya:lavu@cluster0.jd6lcuu.mongodb.net/?appName=Cluster0";
 const client = new MongoClient(uri, {
   serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true },
@@ -17,13 +16,12 @@ const client = new MongoClient(uri, {
 
 let usersCollection;
 
-// Initialize DB
 async function initDB() {
   try {
     await client.connect();
     const db = client.db("authdb");
     usersCollection = db.collection("users");
-    console.log("✅ Connected to MongoDB");
+    console.log(" Connected to MongoDB");
   } catch (err) {
     console.error("MongoDB connection error:", err);
   }
@@ -31,7 +29,7 @@ async function initDB() {
 
 initDB();
 
-// --- Register ---
+
 app.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -52,7 +50,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// --- Login ---
+
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,7 +69,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// --- Reset Password ---
+
 app.post("/reset-password", async (req, res) => {
   try {
     const { email, newPassword } = req.body;
@@ -97,9 +95,9 @@ app.post("/reset-password", async (req, res) => {
   }
 });
 
-// --- Test route ---
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
